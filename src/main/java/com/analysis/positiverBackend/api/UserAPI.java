@@ -60,7 +60,7 @@ public class UserAPI {
 
     @PostMapping("/register")
     public void addUser(@RequestBody Map<String, String> body) throws IllegalArgumentException{
-        String category = body.get("role").toUpperCase();
+        // String category = body.get("role").toUpperCase();
         User user = new User(body.get("email"),
                 passwordEncoder.encode(body.get("password")));
         userService.addUser(user);

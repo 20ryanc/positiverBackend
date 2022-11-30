@@ -23,11 +23,11 @@ public class ScoreAPI {
     }
 
     @PostMapping("/postScore")
-    public void postScore(Principal principal, @RequestBody Map<String, String> body) throws NumberFormatException{
+    public void postScore(@RequestBody Map<String, String> body) throws NumberFormatException{
         Date in = new Date();
         LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
         Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
-        Score score = new Score(principal.getName(), out, Double.valueOf(body.get("score")));
+        Score score = new Score(String.valueOf(body.get("email")), out, Double.valueOf(body.get("score")));
         scoreRepository.save(score);
     }
     @GetMapping("/getScore")
